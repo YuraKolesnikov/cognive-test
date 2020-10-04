@@ -2,10 +2,7 @@
   <div id="app">
     <navbar/>
     <div class="main">
-      Count: {{ count }}<br>
-      Next: {{ next }}<br>
-      Prev: {{ previous }}
-      Data: {{ data }}
+      <v-table table-title="Star Wars Vehicles" :data="data" />
     </div>
   </div>
 </template>
@@ -13,9 +10,11 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import Navbar from '@/components/Navbar'
+import VTable from '@/components/VTable'
 export default {
   components: {
-    Navbar
+    Navbar,
+    VTable
   },
   methods: {
     ...mapActions(['GET_DATA'])
