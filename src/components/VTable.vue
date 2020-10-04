@@ -7,7 +7,7 @@
       </md-table-toolbar>
       <md-table-row>
         <md-table-head v-for="column in columns" :key="`column_${column.id}`">
-					<div class="inner" @click="$emit('updateSorting', { id: column.id, type: column.type })">
+					<div class="inner" @click="$emit('updateSorting', column.id)">
 						{{ column.title }}
 						<template v-if="sortingOptions.id && sortingOptions.id == column.id">
 							<md-icon :class="{'active': sortingOptions.ascending}">arrow_downward</md-icon>

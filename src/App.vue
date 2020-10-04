@@ -32,8 +32,8 @@ export default {
   methods: {
     ...mapActions(['GET_DATA']),
     ...mapMutations(['UPDATE_SORTING']),
-    updateSorting({ id, type }) {
-      this.UPDATE_SORTING({ id, type })
+    updateSorting(id) {
+      this.UPDATE_SORTING(id)
     },
     selectPage(page) {
       this.GET_DATA({
