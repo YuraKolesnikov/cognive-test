@@ -10,6 +10,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     count: null,
+    currentPage: 1,
     next: null,
     previous: null,
     data: null,
@@ -24,7 +25,7 @@ export default new Vuex.Store({
       state.count     = count
       state.next      = next
       state.previous  = previous
-      state.data      = results
+      state.data      = [ ...results ]
     },
     UPDATE_SORTING: (state, { id, type }) => {
       state.sort.ascending = !state.sort.ascending
@@ -40,7 +41,7 @@ export default new Vuex.Store({
         'page': `https://swapi.dev/api/vehicles/?page=${page}`,
         'regular': 'https://swapi.dev/api/vehicles'
       }
-      
+
       const response = await api.get(requestTypes[type])
       commit('SAVE_DATA', response.data)
     },
