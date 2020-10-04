@@ -7,7 +7,7 @@ import '@/assets/scss/grid.scss'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 
-import { MdToolbar, MdButton, MdTable, MdCard, MdIcon, MdField } from 'vue-material/dist/components'
+import { MdToolbar, MdButton, MdTable, MdCard, MdIcon, MdField, MdContent } from 'vue-material/dist/components'
 
 Vue.use(MdToolbar)
 Vue.use(MdButton)
@@ -15,6 +15,7 @@ Vue.use(MdTable)
 Vue.use(MdCard)
 Vue.use(MdIcon)
 Vue.use(MdField)
+Vue.use(MdContent)
 
 Vue.config.productionTip = false
 
