@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 
 import { api } from '@/services/api'
 
+import { sortByInteger, sortByString } from '@/utils/sort'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -10,7 +12,12 @@ export default new Vuex.Store({
     count: null,
     next: null,
     previous: null,
-    data: null
+    data: null,
+    sort: {
+      ascending: true,
+      id: null,
+      type: null
+    }
   },
   mutations: {
     SAVE_DATA: (state, { count, next, previous, results }) => {
@@ -18,6 +25,11 @@ export default new Vuex.Store({
       state.next      = next
       state.previous  = previous
       state.data      = results
+    },
+    UPDATE_SORTING: (state, { id, type }) => {
+      state.sort.ascending = !state.sort.ascending
+      state.sort.id = id
+      state.sort.type = type
     }
   },
   actions: {
@@ -34,6 +46,12 @@ export default new Vuex.Store({
     },
   },
   getters: {
-
+    localData: state => {
+      if (state.data !== null) {
+        return state.sort.type == 'number'
+        ? state.data.sort(sortByInteger(state.sort))
+        : state.data.sort(sortByString(state.sort))
+      }
+    } 
   }
 })
