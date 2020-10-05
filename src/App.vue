@@ -5,7 +5,8 @@
       <v-filter 
         @input="search" 
         @change="updateFilter"  
-        :value="filter.value" />
+        :value="filter.value"
+        :current-value="filter.key" />
       <v-table 
         table-title="Star Wars Vehicles" 
         :data="localData"
@@ -38,19 +39,19 @@ export default {
   },
   methods: {
     ...mapActions(['GET_DATA']),
-    ...mapMutations(['UPDATE_SORTING', 'UPDATE_FILTER_KEY', 'UPDATE_FILTER_VAL']),
+    ...mapMutations(['UPDATE_SORTING', 'UPDATE_FILTER']),
     selectPage(page) {
       this.GET_DATA({
         type: 'page',
         page
       })
     },
-    updateFilter(filter) {
-      this.UPDATE_FILTER_KEY(filter)
-      this.UPDATE_FILTER_VAL('')
+    updateFilter(value) {
+      this.UPDATE_FILTER({ key: 'key', value })
+      this.UPDATE_FILTER({ key: 'value', value: '' })
     },
     search(value) {
-      this.UPDATE_FILTER_VAL(value)
+      this.UPDATE_FILTER({ key: 'value', value })
       if (this.filter.key == 'name') {
         /* Request */
         this.GET_DATA({

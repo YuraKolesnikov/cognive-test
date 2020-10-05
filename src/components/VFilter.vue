@@ -4,9 +4,9 @@
 			<h1 class="md-title">Filter vehicles</h1>
 			<div class="filter__main">
 				<div>
-					<md-radio v-model="filter" value="name" @change="$emit('change', $event)">Name</md-radio>
-					<md-radio v-model="filter" value="model" @change="$emit('change', $event)">Model</md-radio>
-					<md-radio v-model="filter" value="manufacturer" @change="$emit('change', $event)">Manufacturer</md-radio>
+					<md-radio v-model="localValue" value="name" @change="$emit('change', $event)">Name</md-radio>
+					<md-radio v-model="localValue" value="model" @change="$emit('change', $event)">Model</md-radio>
+					<md-radio v-model="localValue" value="manufacturer" @change="$emit('change', $event)">Manufacturer</md-radio>
 				</div>
 				<md-field>
 					<md-input :value="value" placeholder="Enter value" v-debounce="handleInput"></md-input>
@@ -23,7 +23,7 @@ export default {
 	},
 	data() {
 		return {
-			filter: 'name'
+			localValue: 'name'
 		}
 	},
 	methods: {
