@@ -2,11 +2,15 @@
   <div id="app">
     <navbar/>
     <div class="main">
+      <v-filter 
+        @input="search" 
+        @change="updateFilter"  
+        :value="filter.value" />
       <v-table 
         table-title="Star Wars Vehicles" 
         :data="localData"
         :sorting-options="sort"
-        @updateSorting="updateSorting" />
+        @updateSorting="UPDATE_SORTING" />
     </div>
     <div class="container">
       <v-paginator 
@@ -23,27 +27,37 @@ import { mapActions, mapState, mapGetters, mapMutations } from 'vuex'
 import Navbar from '@/components/Navbar'
 import VTable from '@/components/VTable'
 import VPaginator from '@/components/VPaginator'
+import VFilter from '@/components/VFilter'
 export default {
   components: {
     Navbar,
     VTable,
-    VPaginator
+    VPaginator,
+    VFilter
   },
   methods: {
     ...mapActions(['GET_DATA']),
-    ...mapMutations(['UPDATE_SORTING']),
-    updateSorting(id) {
-      this.UPDATE_SORTING(id)
-    },
+    ...mapMutations(['UPDATE_SORTING', 'UPDATE_FILTER_KEY', 'UPDATE_FILTER_VAL']),
     selectPage(page) {
       this.GET_DATA({
         type: 'page',
         page
       })
+    },
+    updateFilter(filter) {
+      this.UPDATE_FILTER_KEY(filter)
+      this.UPDATE_FILTER_VAL('')
+    },
+    search(value) {
+      if (this.filter.key == 'name') {
+        /* Request */
+      } else {
+        this.UPDATE_FILTER_VAL(value)
+      }
     }
   },
   computed: {
-    ...mapState(['count', 'next', 'previous', 'sort']),
+    ...mapState(['count', 'next', 'previous', 'sort', 'filter']),
     ...mapGetters(['localData'])
   },
   async mounted() {

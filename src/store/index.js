@@ -19,6 +19,10 @@ export default new Vuex.Store({
       ascending: true,
       id: null,
       type: null
+    },
+    filter: {
+      key: 'name',
+      value: ''
     }
   },
   mutations: {
@@ -31,7 +35,9 @@ export default new Vuex.Store({
     UPDATE_SORTING: (state, id) => {
       state.sort.ascending = !state.sort.ascending
       state.sort.id = id
-    }
+    },
+    UPDATE_FILTER_KEY: (state, key) => state.filter.key = key,
+    UPDATE_FILTER_VAL: (state, val) => state.filter.value = val
   },
   actions: {
     GET_DATA: async ({ state, commit }, { type = 'regular', page = 1 }) => {
@@ -50,9 +56,18 @@ export default new Vuex.Store({
   },
   getters: {
     localData: state => {
-      if (state.data !== null) {
-        return state.data.sort(customSort(state.sort))
+      let data
+      if (!!state.filter.value) {
+        data = state.data.filter(item => item[state.filter.key].match(state.filter.value))
+      } else {
+        data = state.data
       }
+      
+      if (state.data !== null) {
+        data.sort(customSort(state.sort))
+      }
+
+      return data
     } 
   }
 })
