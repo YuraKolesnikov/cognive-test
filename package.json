@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
+    "qs": "^6.9.4",
     "vue": "^2.6.11",
     "vue-debounce": "^2.5.7",
     "vue-material": "^1.0.0-beta-15",
