@@ -40,12 +40,9 @@ export default {
 	data() {
 		return {
 			columns: [
-				{ id: 'name', title: 'Name', type: 'string' },
-				{ id: 'model', title: 'Model', type: 'string' },
-				{ id: 'manufacturer', title: 'Manufacturer', type: 'string' },
-				{ id: 'length', title: 'Length', type: 'number' },
-				{ id: 'max_atmosphering_speed', title: 'Max.speed', type: 'number' },
-				{ id: 'crew', title: 'Crew', type: 'number' }
+				{ id: 'name', title: 'Name' },
+				{ id: 'model', title: 'Model' },
+				{ id: 'manufacturer', title: 'Manufacturer' }
 			]
 		}
 	}

@@ -15,6 +15,7 @@
     <div class="container">
       <v-paginator 
         :count="count"
+        :current-page="currentPage"
         @selectPage="selectPage" 
         @prevPage="GET_DATA({ type: 'previous' })" 
         @nextPage="GET_DATA({ type: 'next' })" />
@@ -49,15 +50,17 @@ export default {
       this.UPDATE_FILTER_VAL('')
     },
     search(value) {
+      this.UPDATE_FILTER_VAL(value)
       if (this.filter.key == 'name') {
         /* Request */
-      } else {
-        this.UPDATE_FILTER_VAL(value)
-      }
+        this.GET_DATA({
+          type: 'regular'
+        })
+      } 
     }
   },
   computed: {
-    ...mapState(['count', 'next', 'previous', 'sort', 'filter']),
+    ...mapState(['count', 'next', 'previous', 'sort', 'filter', 'currentPage']),
     ...mapGetters(['localData'])
   },
   async mounted() {

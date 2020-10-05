@@ -26,12 +26,8 @@
 <script>
 export default {
 	props: {
-		count: Number
-	},
-	data() {
-		return {
-			currentPage: 1
-		}
+		count: Number,
+		currentPage: Number
 	},
 	computed: {
 		pageCount() {
@@ -40,18 +36,15 @@ export default {
 	},
 	methods: {
 		selectPage(page) {
-			this.currentPage = page
 			this.$emit('selectPage', page)
 		},
 		prevPage() {
 			if (this.currentPage > 1) {
-				this.currentPage--
 				this.$emit('prevPage')
 			}
 		},
 		nextPage() {
 			if (this.currentPage < this.pageCount) {
-				this.currentPage++
 				this.$emit('nextPage')
 			}
 		}
