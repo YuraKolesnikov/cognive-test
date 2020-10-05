@@ -17,6 +17,12 @@ Vue.use(MdIcon)
 Vue.use(MdField)
 Vue.use(MdContent)
 
+import vueDebounce from 'vue-debounce'
+Vue.use(vueDebounce, {
+  listenTo: 'input',
+  defaultTime: '1000ms'
+})
+
 Vue.config.productionTip = false
 
 new Vue({
